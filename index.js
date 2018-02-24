@@ -36,6 +36,18 @@ function updateLine(text) {
     cursor.horizontalAbsolute(0).eraseLine().write(text);
 }
 
+
+var callback_params = {
+  'callback_url': process.env.CALLBACK_URL
+};
+// regist callback_url
+speech_to_text.registerCallback(callback_params, function(error, response) {
+  if (error)
+    console.log('Error:', error);
+  else
+    console.log(JSON.stringify(response, null, 2));
+});
+
 // first set up a session to connect the output and input(s)
 speech_to_text.createSession(null, function(err, session) {
     if (err) {
